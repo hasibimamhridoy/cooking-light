@@ -5,6 +5,8 @@ import Login from "../../../pages/LoginRegister/Login/Login";
 
 const MyNavbar = () => {
   const {user} = useContext(AuthContext)
+
+  const { handleManualLogout } = useContext(AuthContext);
   return (
     <div className="">
       <div className="navbar bg-base-100 lg:px-24 shadow-md">
@@ -77,7 +79,7 @@ const MyNavbar = () => {
                 <a className="justify-between">Profile</a>
               </li>
 
-              <li>
+              <li onClick={handleManualLogout}>
                 <a>Logout</a>
               </li>
             </ul>
