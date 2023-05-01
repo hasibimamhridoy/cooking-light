@@ -152,7 +152,7 @@ const MyFooter = () => {
           </div>
 
           <div className="mb-6 flex justify-center">
-            <p className="text-center w-[50%] ">
+            <p className="text-center lg:w-[50%] ">
               "Cooking Light" is a recipe website and magazine focused on
               healthy and delicious meals. The website offers a variety of
               recipes, from quick and easy weeknight dinners to more elaborate

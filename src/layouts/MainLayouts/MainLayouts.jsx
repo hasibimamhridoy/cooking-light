@@ -9,7 +9,7 @@ const MainLayouts = () => {
             <div className="mynavbar ">
                 <MyNavbar></MyNavbar>
             </div>
-            <div className="outlet my-container h-screen">
+            <div className="outlet lg:h-fit">
                 <Outlet></Outlet>
             </div>
             <div className="footer">

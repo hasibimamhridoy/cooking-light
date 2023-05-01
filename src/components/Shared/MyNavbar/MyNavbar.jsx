@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../ContextProvider/AuthContextProvider";
+import Login from "../../../pages/LoginRegister/Login/Login";
 
 const MyNavbar = () => {
+  const {user} = useContext(AuthContext)
   return (
     <div className="">
-      <div className="navbar bg-base-100 shadow-md my-container">
+      <div className="navbar bg-base-100 lg:px-24 shadow-md">
         <div className="navbar-start ">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -41,7 +44,7 @@ const MyNavbar = () => {
             </ul>
           </div>
           <Link to="/">
-            <a className=" normal-case text-xl cursor-pointer">Cooking Light</a>
+            <a className=" normal-case lg:text-xl cursor-pointer">Cooking Light</a>
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
@@ -60,7 +63,7 @@ const MyNavbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <div className="dropdown dropdown-end">
+          {user? <div className="dropdown dropdown-end">
             <label title="My Name" tabIndex={0} className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">
                 <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
@@ -78,7 +81,7 @@ const MyNavbar = () => {
                 <a>Logout</a>
               </li>
             </ul>
-          </div>
+          </div> : <div className="dropdown dropdown-end"><Link to='/login'><button className="btn btn-xs">Login</button></Link></div>}
         </div>
       </div>
     </div>
