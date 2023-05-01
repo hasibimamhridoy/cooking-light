@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../ContextProvider/AuthContextProvider";
 
 const Login = () => {
-  const { handleManualLogin,handleGoogleRegister } = useContext(AuthContext);
+  const { handleManualLogin,handleGoogleRegister,handleGithubRegister } = useContext(AuthContext);
 
   const location = useLocation()
   console.log(location);
@@ -32,6 +32,21 @@ const Login = () => {
 
   const handleGoogle =()=>{
     handleGoogleRegister()
+    .then((result) => {
+      
+      const user = result.user;
+      console.log(user);
+      
+    }).catch((error) => {
+      // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+     
+    });
+  }
+
+  const handleGithub =()=>{
+    handleGithubRegister()
     .then((result) => {
       
       const user = result.user;
@@ -149,7 +164,8 @@ const Login = () => {
             Sign in with Google
           </button>
          
-         <button
+          <button
+         onClick={handleGithub}
             type="button"
             class="text-white w-full bg-[#24292F] hover:bg-[#24292F]/90 focus:ring-4 focus:outline-none focus:ring-[#24292F]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/30 mr-2 mb-2"
           >

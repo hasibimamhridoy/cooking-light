@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../../ContextProvider/AuthContextProvider";
 
 const Register = () => {
-  const { handleManualRegister, handleGoogleRegister } =
+  const { handleManualRegister, handleGoogleRegister ,handleGithubRegister } =
     useContext(AuthContext);
 
   const handleRegister = (e) => {
@@ -26,6 +26,20 @@ const Register = () => {
 
   const handleGoogle =()=>{
     handleGoogleRegister()
+    .then((result) => {
+      
+      const user = result.user;
+      console.log(user);
+      
+    }).catch((error) => {
+      // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+     
+    });
+  }
+  const handleGithub =()=>{
+    handleGithubRegister()
     .then((result) => {
       
       const user = result.user;
@@ -169,6 +183,7 @@ const Register = () => {
           </button>
          
          <button
+         onClick={handleGithub}
             type="button"
             class="text-white w-full bg-[#24292F] hover:bg-[#24292F]/90 focus:ring-4 focus:outline-none focus:ring-[#24292F]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/30 mr-2 mb-2"
           >
