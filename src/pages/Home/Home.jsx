@@ -10,10 +10,6 @@ import Trics from '../../components/Trics/Trics';
 const Home = () => {
     const chefs = useLoaderData()
     const navigation = useNavigation();
-
-    const spinner = navigation.state === 'loading'
-    console.log(spinner);
-   
      if (navigation.state==='loading') {
        console.log(navigation.state === 'loading');
        return <Spinner></Spinner>;
