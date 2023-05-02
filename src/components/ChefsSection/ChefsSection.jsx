@@ -6,7 +6,6 @@ import Spinner from "../Spinner/Spinner";
 const ChefsSection = ({chefs}) => {
 
     const navigation = useNavigation();
-
     const spinner = navigation.state === 'loading'
     console.log(spinner);
    
@@ -15,17 +14,9 @@ const ChefsSection = ({chefs}) => {
        return <Spinner></Spinner>;
      }
 
-//   const [chefs, setChefs] = useState([]);
-//   // const [chef,setChef] = useState([])
-//   useEffect(() => {
-//     fetch("http://localhost:6005/allChef")
-//       .then((res) => res.json())
-//       .then((data) => setChefs(data));
-//   }, []);
-
-
   return (
-    <div>
+    <div className="lg:my-20 my-10">
+        <h1 className="text-center text-yellow-400 text-xl font-bold lg:text-5xl lg:mb-10 mb-5">Special Chefs</h1>
       <ChefCard chefs={chefs}></ChefCard>
     </div>
   );

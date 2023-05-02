@@ -7,6 +7,9 @@ import Login from '../../pages/LoginRegister/Login/Login';
 import Register from '../../pages/LoginRegister/Register/Register';
 import Chef from '../../pages/Chef/Chef';
 import Error from '../../pages/Error/Error';
+import PrivateRoutes from '../PrivateRoutes/PrivateRoutes';
+import About from '../../pages/About/About';
+import Recipe from '../../pages/Recipe/Recipe';
 
 const MainRoutes = createBrowserRouter([
     {
@@ -25,9 +28,19 @@ const MainRoutes = createBrowserRouter([
                 element:<Blog></Blog>
             },
             {
+                path:'/about',
+                element:<About></About>
+            },
+            {
                 path:'/chef/:id',
-                element:<Chef></Chef>,
+                element:<PrivateRoutes><Chef></Chef></PrivateRoutes>,
                 loader:({params})=>fetch(`http://localhost:6005/chef/${params.id}`)
+                
+            },
+            {
+                path:'/recipe/:id',
+                element:<PrivateRoutes><Recipe></Recipe></PrivateRoutes>,
+                loader:({params})=>fetch(`http://localhost:6005/recipe/${params.id}`)
                 
             },
             {

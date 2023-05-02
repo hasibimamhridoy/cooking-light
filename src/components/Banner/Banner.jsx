@@ -33,7 +33,7 @@ const Banner = () => {
                   </p>
 
                   <div class="banner-btn-sec mt-3">
-                    <a class="custom-btn hover:bg-green-400 cursor-pointer bg-yellow-400 px-5 py-2 rounded-sm">
+                    <a class="custom-btn transition duration-700 hover:bg-green-400 cursor-pointer bg-yellow-400 px-5 py-2 rounded-sm">
                       Order Now
                     </a>
                     

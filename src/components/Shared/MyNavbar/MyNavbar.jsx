@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../ContextProvider/AuthContextProvider";
 import Login from "../../../pages/LoginRegister/Login/Login";
 
@@ -32,17 +32,36 @@ const MyNavbar = () => {
               tabIndex={0}
               className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
-              <Link to="/">
-                <li>
-                  <a>Home</a>
-                </li>
-              </Link>
-
-              <Link to="/blog">
-                <li>
-                  <a>Blog</a>
-                </li>
-              </Link>
+              <NavLink
+              to="/"
+              className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "text-yellow-500" : ""
+              }
+            >
+              <li>
+                <a>Home</a>
+              </li>
+            </NavLink>
+            <NavLink
+              to="/blog"
+              className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "text-yellow-500" : ""
+              }
+            >
+              <li>
+                <a>Blog</a>
+              </li>
+            </NavLink>
+            <NavLink
+              to="/about"
+              className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "text-yellow-500" : ""
+              }
+            >
+              <li>
+                <a>About us</a>
+              </li>
+            </NavLink>
             </ul>
           </div>
           <Link to="/">
@@ -53,17 +72,39 @@ const MyNavbar = () => {
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
-            <Link to="/">
+            
+            <NavLink
+              to="/"
+              className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "text-yellow-500" : ""
+              }
+            >
               <li>
                 <a>Home</a>
               </li>
-            </Link>
-
-            <Link to="/blog">
+            </NavLink>
+            <NavLink
+              to="/blog"
+              className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "text-yellow-500" : ""
+              }
+            >
               <li>
                 <a>Blog</a>
               </li>
-            </Link>
+            </NavLink>
+            <NavLink
+              to="/about"
+              className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "text-yellow-500" : ""
+              }
+            >
+              <li>
+                <a>About us</a>
+              </li>
+            </NavLink>
+  
+           
           </ul>
         </div>
         <div className="navbar-end">
@@ -94,7 +135,7 @@ const MyNavbar = () => {
           ) : (
             <div className="dropdown dropdown-end">
               <Link to="/login">
-                <a class="custom-btn hover:bg-green-400 cursor-pointer bg-yellow-400 px-5 py-2 rounded-sm">
+                <a class="custom-btn transition duration-700 hover:bg-green-400 cursor-pointer bg-yellow-400 px-5 py-2 rounded-sm">
                   Login
                 </a>
               </Link>

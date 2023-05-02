@@ -1,21 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLoaderData, useNavigation } from "react-router-dom";
 import "./Chef.css";
 import Spinner from "../../components/Spinner/Spinner";
+import { ToastContainer, toast } from "react-toastify";
 
 const Chef = () => {
-  
   const navigation = useNavigation();
 
- const spinner = navigation.state === 'loading'
- console.log(spinner);
-
-  if (navigation.state==='loading') {
-    console.log(navigation.state === 'loading');
-    return <Spinner></Spinner>;
-  }
-
-  
   const chef = useLoaderData();
   const {
     banner_img,
@@ -28,6 +19,39 @@ const Chef = () => {
     recipes,
     years_of_experience,
   } = chef;
+
+
+  const [disabledRecipes, setDisabledRecipes] = useState(
+    Array(recipes.length).fill(false)
+  );
+
+  console.log(disabledRecipes);
+
+  const spinner = navigation.state === "loading";
+  console.log(spinner);
+
+  if (navigation.state === "loading") {
+    console.log(navigation.state === "loading");
+    return <Spinner></Spinner>;
+  }
+
+ 
+  const handleToast = (index) => {
+    toast.success("Successfully Added!", {
+      position: "top-right",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+
+    const updatedDisabledRecipes = [...disabledRecipes];
+    updatedDisabledRecipes[index] = true;
+    setDisabledRecipes(updatedDisabledRecipes);
+  };
 
   return (
     <div className="bg-[#fffaf0]">
@@ -101,7 +125,7 @@ const Chef = () => {
           </div>
 
           <div className="recipeInformation flex flex-col gap-5">
-            {recipes.map((recipe,i) => {
+            {recipes.map((recipe, i) => {
               const {
                 recipe_img,
                 recipe_name,
@@ -110,7 +134,10 @@ const Chef = () => {
                 rating,
               } = recipe;
               return (
-                <div key={i} className="card lg:card-side bg-base-100 shadow-md rounded-sm  lg:mx-9">
+                <div
+                  key={i}
+                  className="card lg:card-side bg-base-100 shadow-md rounded-sm  lg:mx-9"
+                >
                   <div className="lg:w-[30%]">
                     <div className="h-full">
                       <img
@@ -133,7 +160,7 @@ const Chef = () => {
                       <span className="">{cooking_method}</span>
                       <h1 className="text-xl font-semibold">Ingredients</h1>
                       <div className="ingredients  flex gap-x-2 flex-shrink flex-wrap">
-                        {ingredients.map((ingredient,i) => {
+                        {ingredients.map((ingredient, i) => {
                           return (
                             <div key={i} className="">
                               <li>{ingredient}</li>
@@ -144,9 +171,16 @@ const Chef = () => {
                     </p>
 
                     <div className="addtofavorite flex  justify-end py-5">
-                      <a class="custom-btn hover:bg-green-400 cursor-pointer bg-yellow-400 px-5 py-2 rounded-sm">
+                      <button
+                        onClick={() => handleToast(i)}
+                        className={`custom-btn ${disabledRecipes[i]&& 'cursor-not-allowed bg-gray-400 hover:bg-gray-400'}  hover:bg-green-400 bg-yellow-400 px-5 py-2 rounded-sm`}
+                        disabled={disabledRecipes[i]}
+                      >
                         Add to favorite
-                      </a>
+                      </button>
+
+                      
+
                     </div>
                   </div>
                 </div>

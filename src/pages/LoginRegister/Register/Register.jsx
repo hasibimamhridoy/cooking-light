@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../ContextProvider/AuthContextProvider";
 import { getAuth,updateProfile,} from "firebase/auth";
@@ -8,6 +8,7 @@ const Register = () => {
   const { handleManualRegister, handleGoogleRegister ,handleGithubRegister,handleUpdateProfile,user } =
     useContext(AuthContext);
 
+    const [error,setError] = useState('')
   const handleRegister = (e) => {
     e.preventDefault();
     const name = e.target.name.value;
@@ -33,10 +34,15 @@ const Register = () => {
       })
       .catch((error) => {
         console.log(error);
+        setError(error.message)
       });
 
   };
 
+
+  if (error =='Firebase: Password should be at least 6 characters (auth/weak-password).') {
+    setError('Password should be at least 6 characters')
+  }
   console.log(user);
 
   const handleGoogle =()=>{
@@ -160,6 +166,8 @@ const Register = () => {
             >
               Register
             </button>
+
+            <p className="text-red-500">{error}</p>
             <div class="text-sm font-medium text-gray-500 dark:text-gray-300">
               Already registered?{" "}
               <Link to="/login">
@@ -173,7 +181,10 @@ const Register = () => {
             </div>
           </form>
 
+          
+
          <div className="social-login mt-5">
+         <h1 className="mb-5 text-center">Or</h1>
          <button
          onClick={handleGoogle}
             type="button"

@@ -1,9 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../ContextProvider/AuthContextProvider";
 
 const Login = () => {
   const { handleManualLogin,handleGoogleRegister,handleGithubRegister,user } = useContext(AuthContext);
+
+  const [error,setError] = useState('')
 
   const location = useLocation()
   console.log(location);
@@ -24,11 +26,17 @@ const Login = () => {
 
       })
       .catch((error) => {
+
         console.log(error);
+        setError(error.message)
+
       });
 
-    console.log(email);
   };
+
+  if (error =='Firebase: Error (auth/wrong-password).') {
+    setError('Your Password is wrong.Please provided correct password')
+  }
 
   const handleGoogle =()=>{
     handleGoogleRegister()
@@ -36,11 +44,12 @@ const Login = () => {
       
       const user = result.user;
       console.log(user);
+      navigate(fromPath)
       
     }).catch((error) => {
       // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
+      setError(error.errorMessage)
+     
      
     });
   }
@@ -51,16 +60,16 @@ const Login = () => {
       
       const user = result.user;
       console.log(user);
+      navigate(fromPath)
       
     }).catch((error) => {
       // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
+      setError(error.errorMessage)
+    
      
     });
   }
 
-  console.log(user);
   return (
     <div className="m-5 lg:m-0 ">
      <div class="w-full mx-auto my-10 max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
@@ -120,17 +129,19 @@ const Login = () => {
             </div>
             <a
               href="#"
-              class="ml-auto text-sm text-blue-700 hover:underline dark:text-blue-500"
+              class="ml-auto text-sm text-yellow-400 hover:underline dark:text-blue-500"
             >
               Lost Password?
             </a>
           </div>
           <button
             type="submit"
-            class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            class="w-full text-white bg-yellow-400 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
             Login to your account
           </button>
+
+          <p className="text-red-500">{error}</p>
           <div class="text-sm font-medium text-gray-500 dark:text-gray-300">
             Not registered?{" "}
             <Link to='/register'><a
@@ -143,6 +154,7 @@ const Login = () => {
         </form>
 
         <div className="social-login mt-5">
+        <h1 className="mb-5 text-center">Or</h1>
          <button
          onClick={handleGoogle}
             type="button"
