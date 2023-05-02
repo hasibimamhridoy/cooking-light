@@ -5,6 +5,7 @@ import { useLoaderData, useNavigation } from 'react-router-dom';
 import Spinner from '../../components/Spinner/Spinner';
 import Recipies from '../../components/Recipes/Recipies';
 import Review from '../../components/Review/Review';
+import Trics from '../../components/Trics/Trics';
 
 const Home = () => {
     const chefs = useLoaderData()
@@ -23,6 +24,7 @@ const Home = () => {
             <ChefsSection chefs={chefs}></ChefsSection>
             <Recipies chefs={chefs}></Recipies>
             <Review></Review>
+            <Trics></Trics>
         </div>
     );
 };

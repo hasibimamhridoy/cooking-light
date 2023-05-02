@@ -10,6 +10,7 @@ import Error from '../../pages/Error/Error';
 import PrivateRoutes from '../PrivateRoutes/PrivateRoutes';
 import About from '../../pages/About/About';
 import Recipe from '../../pages/Recipe/Recipe';
+import Tric from '../../pages/Tric/Tric';
 
 const MainRoutes = createBrowserRouter([
     {
@@ -41,6 +42,12 @@ const MainRoutes = createBrowserRouter([
                 path:'/recipe/:id',
                 element:<PrivateRoutes><Recipe></Recipe></PrivateRoutes>,
                 loader:({params})=>fetch(`http://localhost:6005/recipe/${params.id}`)
+                
+            },
+            {
+                path:'/trics/:id',
+                element:<Tric></Tric>,
+                loader:({params})=>fetch(`http://localhost:6005/trics/${params.id}`)
                 
             },
             {
