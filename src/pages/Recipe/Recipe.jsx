@@ -2,30 +2,28 @@ import React, { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 const Recipe = () => {
-
   const recipe = useLoaderData();
-
 
   const { recipe_img, recipe_name, ingredients, cooking_method, rating } =
     recipe;
 
-    const [disabledRecipes, setDisabledRecipes] = useState(false);
+  const [disabledRecipes, setDisabledRecipes] = useState(false);
 
-    const handleToast = () => {
-      toast.success("Successfully Added!", {
-        position: "top-right",
-        autoClose: 1000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
-  
-      setDisabledRecipes(true);
-    };
-  
+  const handleToast = () => {
+    toast.success("Successfully Added!", {
+      position: "top-right",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+
+    setDisabledRecipes(true);
+  };
+
   return (
     <div className="bg-[#fffaf0] lg:p-10 p-3">
       <div className="banner  bg-[#fffaf0] lg:mx-24 border border-gray-300  mb-10">
@@ -61,13 +59,16 @@ const Recipe = () => {
             </p>
 
             <div className="addtofavorite flex  justify-end py-5">
-            <button
-                        onClick={handleToast}
-                        className={`custom-btn ${disabledRecipes && 'cursor-not-allowed bg-gray-400 hover:bg-gray-400'}  hover:bg-green-400 bg-yellow-400 px-5 py-2 rounded-sm`}
-                        disabled={disabledRecipes}
-                      >
-                        Add to favorite
-                      </button>
+              <button
+                onClick={handleToast}
+                className={`custom-btn ${
+                  disabledRecipes &&
+                  "cursor-not-allowed bg-gray-400 hover:bg-gray-400"
+                }  hover:bg-green-400 bg-yellow-400 px-5 py-2 rounded-sm`}
+                disabled={disabledRecipes}
+              >
+                Add to favorite
+              </button>
             </div>
           </div>
         </div>
