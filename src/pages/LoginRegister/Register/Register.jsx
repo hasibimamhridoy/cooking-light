@@ -1,28 +1,43 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../ContextProvider/AuthContextProvider";
-
+import { getAuth,updateProfile,} from "firebase/auth";
+import { app } from "../../../firebase/FirebaseConfig/firebaseConfig";
+const auth = getAuth(app);
 const Register = () => {
-  const { handleManualRegister, handleGoogleRegister ,handleGithubRegister } =
+  const { handleManualRegister, handleGoogleRegister ,handleGithubRegister,handleUpdateProfile,user } =
     useContext(AuthContext);
 
   const handleRegister = (e) => {
     e.preventDefault();
     const name = e.target.name.value;
     const pass = e.target.password.value;
+    const photo_URL = e.target.photo_URL.value;
     const confirm_password = e.target.confirm_password.value;
     const email = e.target.email.value;
 
+    
     handleManualRegister(email, pass)
       .then((result) => {
         console.log(result);
+
+        updateProfile(auth.currentUser, {
+          displayName: name, photoURL: photo_URL
+        }).then(() => {
+          // Profile updated!
+          // ...
+        }).catch((error) => {
+          // An error occurred
+          // ...
+        });
       })
       .catch((error) => {
         console.log(error);
       });
 
-    console.log(email);
   };
+
+  console.log(user);
 
   const handleGoogle =()=>{
     handleGoogleRegister()
@@ -93,15 +108,15 @@ const Register = () => {
             </div>
             <div>
               <label
-                for="photo_url"
+                for="photo_URL"
                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
                 Photo url
               </label>
               <input
                 type="text"
-                name="photo_url"
-                id="photo_url"
+                name="photo_URL"
+                id="photo_URL"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                 placeholder="https://unsplash/img"
               />

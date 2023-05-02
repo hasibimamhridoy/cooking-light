@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../ContextProvider/AuthContextProvider";
 
 const Login = () => {
-  const { handleManualLogin,handleGoogleRegister,handleGithubRegister } = useContext(AuthContext);
+  const { handleManualLogin,handleGoogleRegister,handleGithubRegister,user } = useContext(AuthContext);
 
   const location = useLocation()
   console.log(location);
@@ -59,6 +59,8 @@ const Login = () => {
      
     });
   }
+
+  console.log(user);
   return (
     <div className="m-5 lg:m-0 ">
      <div class="w-full mx-auto my-10 max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
