@@ -7,7 +7,7 @@ const Recipies = ({chefs}) => {
 
     useEffect(()=>{
 
-        fetch('http://localhost:6005/allRecipe')
+        fetch('https://cooking-light-server-hasibimamhridoy.vercel.app/allRecipe')
         .then(res =>res.json())
         .then(data=>setAllRecipe(data))
     },[])

@@ -30,8 +30,8 @@ const Tric = () => {
 
 
     return (
-        <div className='my-calc'>
-            <div className="bg-[#fffaf0] lg:p-10 p-3">
+        <div className='lg:h-screen'>
+            <div className="bg-[#fffaf0] lg:h-screen lg:p-10 p-3">
       <div className="banner  bg-[#fffaf0] lg:mx-24 border border-gray-300  mb-10">
         <div className="card lg:card-side bg-base-100 shadow-md rounded-sm ">
           <div className="lg:w-[30%]">

@@ -9,7 +9,7 @@ const MyNavbar = () => {
   const { handleManualLogout } = useContext(AuthContext);
   return (
     <div className="">
-      <div className="navbar bg-[#fffaf0] lg:px-24 shadow-md">
+      <div className="navbar bg-[#fffaf0] max-w-[1520px] mx-auto shadow-md">
         <div className="navbar-start ">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -65,7 +65,7 @@ const MyNavbar = () => {
             </ul>
           </div>
           <Link to="/">
-            <a className=" normal-case lg:text-xl cursor-pointer">
+            <a className=" normal-case lg:text-xl text-sm cursor-pointer">
               Cooking Light
             </a>
           </Link>

@@ -16,13 +16,13 @@ const MainRoutes = createBrowserRouter([
     {
         path:'/',
         element:<MainLayouts></MainLayouts>,
-        loader:()=>fetch("http://localhost:6005/allChef"),
+        loader:()=>fetch("https://cooking-light-server-hasibimamhridoy.vercel.app/allChef"),
         errorElement:<Error></Error>,
         children:[
             {
                 path:'/',
                 element:<Home></Home>,
-                loader:()=>fetch("http://localhost:6005/allChef")
+                loader:()=>fetch("https://cooking-light-server-hasibimamhridoy.vercel.app/allChef")
             },
             {
                 path:'/blog',
@@ -35,19 +35,19 @@ const MainRoutes = createBrowserRouter([
             {
                 path:'/chef/:id',
                 element:<PrivateRoutes><Chef></Chef></PrivateRoutes>,
-                loader:({params})=>fetch(`http://localhost:6005/chef/${params.id}`)
+                loader:({params})=>fetch(`https://cooking-light-server-hasibimamhridoy.vercel.app/chef/${params.id}`)
                 
             },
             {
                 path:'/recipe/:id',
                 element:<PrivateRoutes><Recipe></Recipe></PrivateRoutes>,
-                loader:({params})=>fetch(`http://localhost:6005/recipe/${params.id}`)
+                loader:({params})=>fetch(`https://cooking-light-server-hasibimamhridoy.vercel.app/recipe/${params.id}`)
                 
             },
             {
                 path:'/trics/:id',
                 element:<Tric></Tric>,
-                loader:({params})=>fetch(`http://localhost:6005/trics/${params.id}`)
+                loader:({params})=>fetch(`https://cooking-light-server-hasibimamhridoy.vercel.app/trics/${params.id}`)
                 
             },
             {

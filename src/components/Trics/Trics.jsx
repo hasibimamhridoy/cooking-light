@@ -7,7 +7,7 @@ const Trics = () => {
 
     useEffect(()=>{
 
-        fetch('http://localhost:6005/allTrics')
+        fetch('https://cooking-light-server-hasibimamhridoy.vercel.app/allTrics')
         .then(res =>res.json())
         .then(data=>setAllTrics(data))
     },[])
