@@ -1,9 +1,21 @@
 import React from 'react';
 import MyNavbar from '../../components/Shared/MyNavbar/MyNavbar';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigation } from 'react-router-dom';
 import MyFooter from '../../components/Shared/MyFooter/MyFooter';
+import Spinner from '../../components/Spinner/Spinner';
+
 
 const MainLayouts = () => {
+     
+    const navigation = useNavigation();
+    const spinner = navigation.state === 'loading'
+    console.log(spinner);
+   
+     if (navigation.state==='loading') {
+       console.log(navigation.state === 'loading');
+       return <Spinner></Spinner>;
+     }
+  
     return (
         <div className=''>
             <div className="mynavbar ">
@@ -12,7 +24,7 @@ const MainLayouts = () => {
             <div className="outlet lg:h-fit">
                 <Outlet></Outlet>
             </div>
-            <div className="footer">
+            <div className="footer w-full bg-neutral-900 flex justify-center">
                 <MyFooter></MyFooter>
             </div>
 

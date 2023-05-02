@@ -2,9 +2,9 @@ import React from "react";
 
 const MyFooter = () => {
   return (
-    <div>
-      <footer className="bg-neutral-900 text-center text-white">
-        <div className="container px-6 pt-6">
+    <div className="bg-neutral-900">
+      <footer className="bg-neutral-900 text-center w-full text-white">
+        <div className=" px-6 w-full pt-6">
           <div className="mb-6 flex justify-center">
             <a
               href="#!"
@@ -160,7 +160,6 @@ const MyFooter = () => {
             </p>
           </div>
 
-        
         </div>
 
         <div className="p-4 text-center">

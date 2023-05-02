@@ -4,7 +4,7 @@ import { AuthContext } from "../../../ContextProvider/AuthContextProvider";
 import Login from "../../../pages/LoginRegister/Login/Login";
 
 const MyNavbar = () => {
-  const {user} = useContext(AuthContext)
+  const { user } = useContext(AuthContext);
 
   const { handleManualLogout } = useContext(AuthContext);
   return (
@@ -33,10 +33,10 @@ const MyNavbar = () => {
               className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
               <Link to="/">
-              <li>
-                <a>Home</a>
-              </li>
-            </Link>
+                <li>
+                  <a>Home</a>
+                </li>
+              </Link>
 
               <Link to="/blog">
                 <li>
@@ -46,7 +46,9 @@ const MyNavbar = () => {
             </ul>
           </div>
           <Link to="/">
-            <a className=" normal-case lg:text-xl cursor-pointer">Cooking Light</a>
+            <a className=" normal-case lg:text-xl cursor-pointer">
+              Cooking Light
+            </a>
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
@@ -65,25 +67,39 @@ const MyNavbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          {user? <div className="dropdown dropdown-end">
-            <label title={user.displayName} tabIndex={0} className="btn btn-ghost btn-circle avatar">
-              <div className="w-10 rounded-full">
-                <img src={user.photoURL} />
-              </div>
-            </label>
-            <ul
-              tabIndex={0}
-              className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
-            >
-              <li>
-                <a className="justify-between">Profile</a>
-              </li>
+          {user ? (
+            <div className="dropdown dropdown-end">
+              <label
+                title={user.displayName}
+                tabIndex={0}
+                className="btn btn-ghost btn-circle avatar"
+              >
+                <div className="w-10 rounded-full">
+                  <img src={user.photoURL} />
+                </div>
+              </label>
+              <ul
+                tabIndex={0}
+                className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+              >
+                <li>
+                  <a className="justify-between">Profile</a>
+                </li>
 
-              <li onClick={handleManualLogout}>
-                <a>Logout</a>
-              </li>
-            </ul>
-          </div> : <div className="dropdown dropdown-end"><Link to='/login'><button className="btn btn-xs">Login</button></Link></div>}
+                <li onClick={handleManualLogout}>
+                  <a>Logout</a>
+                </li>
+              </ul>
+            </div>
+          ) : (
+            <div className="dropdown dropdown-end">
+              <Link to="/login">
+                <a class="custom-btn hover:bg-green-400 cursor-pointer bg-yellow-400 px-5 py-2 rounded-sm">
+                  Login
+                </a>
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </div>

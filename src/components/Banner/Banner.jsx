@@ -11,8 +11,8 @@ const Banner = () => {
       <Swiper
         spaceBetween={50}
         slidesPerView={1}
-        onSlideChange={() => console.log("slide change")}
-        onSwiper={(swiper) => console.log(swiper)}
+        onSlideChange={() => {}}
+        onSwiper={(swiper) => {}}
         loop={true}
       >
         <SwiperSlide>
@@ -115,9 +115,6 @@ const Banner = () => {
           </div>
         </SwiperSlide>
 
-
-       
-        ...
       </Swiper>
     </div>
   );
