@@ -6,12 +6,14 @@ import Blog from '../../pages/Blog/Blog';
 import Login from '../../pages/LoginRegister/Login/Login';
 import Register from '../../pages/LoginRegister/Register/Register';
 import Chef from '../../pages/Chef/Chef';
+import Error from '../../pages/Error/Error';
 
 const MainRoutes = createBrowserRouter([
     {
         path:'/',
         element:<MainLayouts></MainLayouts>,
         loader:()=>fetch("http://localhost:6005/allChef"),
+        errorElement:<Error></Error>,
         children:[
             {
                 path:'/',
