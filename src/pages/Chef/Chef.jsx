@@ -3,6 +3,8 @@ import { useLoaderData, useNavigation } from "react-router-dom";
 import "./Chef.css";
 import Spinner from "../../components/Spinner/Spinner";
 import { ToastContainer, toast } from "react-toastify";
+import Rating from "react-rating";
+import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 
 const Chef = () => {
   const navigation = useNavigation();
@@ -20,7 +22,6 @@ const Chef = () => {
     years_of_experience,
   } = chef;
 
-
   const [disabledRecipes, setDisabledRecipes] = useState(
     Array(recipes.length).fill(false)
   );
@@ -35,7 +36,6 @@ const Chef = () => {
     return <Spinner></Spinner>;
   }
 
- 
   const handleToast = (index) => {
     toast.success("Successfully Added!", {
       position: "top-right",
@@ -151,7 +151,15 @@ const Chef = () => {
                   <div className="card-body p-0 px-4 lg:w-[70%]">
                     <div className="flex mt-3 justify-between ">
                       <h2 className="card-title">{recipe_name}</h2>
-                      <span className="card-title">{rating}</span>
+                      <span className="card-title">
+                        <Rating
+                          initialRating={rating}
+                          readonly
+                          emptySymbol={<AiOutlineStar></AiOutlineStar>}
+                          fullSymbol={<AiFillStar></AiFillStar>}
+                        />{" "}
+                        {rating}
+                      </span>
                     </div>
                     <p className="space-y-3">
                       <span className="text-xl font-semibold">
@@ -173,14 +181,14 @@ const Chef = () => {
                     <div className="addtofavorite flex  justify-end py-5">
                       <button
                         onClick={() => handleToast(i)}
-                        className={`custom-btn ${disabledRecipes[i]&& 'cursor-not-allowed bg-gray-400 hover:bg-gray-400'}  hover:bg-green-400 bg-yellow-400 px-5 py-2 rounded-sm`}
+                        className={`custom-btn ${
+                          disabledRecipes[i] &&
+                          "cursor-not-allowed bg-gray-400 hover:bg-gray-400"
+                        }  hover:bg-green-400 bg-yellow-400 px-5 py-2 rounded-sm`}
                         disabled={disabledRecipes[i]}
                       >
                         Add to favorite
                       </button>
-
-                      
-
                     </div>
                   </div>
                 </div>

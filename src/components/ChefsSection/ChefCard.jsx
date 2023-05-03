@@ -1,6 +1,10 @@
 import React from "react";
 import { Link, useNavigation } from "react-router-dom";
 
+import {SiFoodpanda} from 'react-icons/si'
+import {AiFillLike} from 'react-icons/ai'
+import {MdWork} from 'react-icons/md'
+
 import LazyLoad from "react-lazy-load";
 
 const ChefCard = ({ chefs }) => {
@@ -8,14 +12,13 @@ const ChefCard = ({ chefs }) => {
     <div className="grid grid-cols-1 lg:grid-cols-3 lg:px-24 px-3 py-10 gap-4">
       {chefs.map((chef) => {
         const {
-          banner_img,
           chef_name,
           id,
           chef_picture,
-          bio,
+
           likes,
           number_of_recipes,
-          recipes,
+
           years_of_experience,
         } = chef;
         return (
@@ -40,19 +43,20 @@ const ChefCard = ({ chefs }) => {
               </a>
 
               <ul className="flex gap-5">
-                <li>
-                  <span className="font-extralight">Exprience :</span>{" "}
-                  {years_of_experience}
+                <li className="items-center flex gap-1 ">
+                <MdWork/>
+                  <span className="font-extralight">Exprience:</span>{" "}
+                  ({years_of_experience})
                 </li>
-                <li>
-                  <span className="font-extralight">Recipes :</span>{" "}
-                  {number_of_recipes}
+                <li className="flex items-center justify-center gap-2"><SiFoodpanda />
+                  <span className="font-extralight r">Recipes :</span>
+                  ({number_of_recipes})
                 </li>
               </ul>
 
               <div className="flex items-center justify-between">
-                <p>
-                  <span className="font-extralight">Likes</span> {likes}
+                <p className="flex items-center gap-2">
+                  <span className="font-extralight"><AiFillLike/></span> ({likes})
                 </p>
                 <Link to={`/chef/${id}`}>
                   <a class="custom-btn transition duration-700 hover:bg-green-400 cursor-pointer bg-yellow-400 px-8 py-2 rounded-sm">
