@@ -71,7 +71,7 @@ const Login = () => {
   }
 
   return (
-    <div className="m-5 lg:m-0 ">
+    <div className="p-5 lg:m-0 bg-[#fffaf0] ">
      <div class="w-full mx-auto my-10 max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
         <form onSubmit={handleLogin} class="space-y-6" action="#">
           <h5 class="text-xl text-center font-medium text-gray-900 dark:text-white">

@@ -1,15 +1,23 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../ContextProvider/AuthContextProvider";
 import { getAuth,updateProfile,} from "firebase/auth";
 import { app } from "../../../firebase/FirebaseConfig/firebaseConfig";
 const auth = getAuth(app);
 const Register = () => {
-  const { handleManualRegister, handleGoogleRegister ,handleGithubRegister,handleUpdateProfile,user } =
+
+  const location = useLocation()
+  const fromPath = location.state?.from?.pathname || '/'
+  const navigate = useNavigate()
+
+
+  const { handleManualRegister, handleGoogleRegister ,handleGithubRegister,handleUpdateProfile,user,handleManualLogout } =
     useContext(AuthContext);
 
     const [error,setError] = useState('')
+    
   const handleRegister = (e) => {
+    console.log(e.target);
     e.preventDefault();
     const name = e.target.name.value;
     const pass = e.target.password.value;
@@ -17,6 +25,25 @@ const Register = () => {
     const confirm_password = e.target.confirm_password.value;
     const email = e.target.email.value;
 
+    if (email.length < 1) {
+      return setError('You cannot submit empty email fields.')
+    }
+
+    else if (pass.length < 6) {
+
+      return setError('Password should be at least 6 characters')
+      
+    }
+    else if (confirm_password.length < 6) {
+
+      return setError('Confirm Password should be at least 6 characters')
+      
+    }
+    else if (pass !== confirm_password) {
+
+      return setError('Password and Confirm Password does not match')
+      
+    }
     
     handleManualRegister(email, pass)
       .then((result) => {
@@ -31,6 +58,11 @@ const Register = () => {
           // An error occurred
           // ...
         });
+
+        setError('Login Sucessfully')
+        handleManualLogout()
+        navigate('/login')
+        e.target.reset()
       })
       .catch((error) => {
         console.log(error);
@@ -39,18 +71,23 @@ const Register = () => {
 
   };
 
+  console.log(error);
+
 
   if (error =='Firebase: Password should be at least 6 characters (auth/weak-password).') {
     setError('Password should be at least 6 characters')
+  }
+  if (error =='Firebase: Error (auth/email-already-in-use).') {
+    setError('Email Already Exits.Please provide another Email')
   }
   console.log(user);
 
   const handleGoogle =()=>{
     handleGoogleRegister()
     .then((result) => {
-      
-      const user = result.user;
-      console.log(user);
+     
+      handleManualLogout()
+        navigate('/login')
       
     }).catch((error) => {
       // Handle Errors here.
@@ -62,9 +99,9 @@ const Register = () => {
   const handleGithub =()=>{
     handleGithubRegister()
     .then((result) => {
-      
-      const user = result.user;
-      console.log(user);
+
+      handleManualLogout()
+        navigate('/login')
       
     }).catch((error) => {
       // Handle Errors here.
@@ -75,7 +112,7 @@ const Register = () => {
   }
   return (
     <div>
-      <div className="m-5 lg:m-0 ">
+      <div className="p-5 lg:m-0 bg-[#fffaf0] ">
         <div class="w-full mx-auto my-10 max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
           <form onSubmit={handleRegister} class="space-y-5" action="#">
             <h5 class="text-xl text-center font-medium text-gray-900 dark:text-white">
@@ -109,7 +146,7 @@ const Register = () => {
                 id="email"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                 placeholder="name@company.com"
-                required
+                
               />
             </div>
             <div>
@@ -140,7 +177,7 @@ const Register = () => {
                 id="password"
                 placeholder="••••••••"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                required
+                
               />
             </div>
             <div>
@@ -156,7 +193,7 @@ const Register = () => {
                 id="confirm_password"
                 placeholder="••••••••"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                required
+                
               />
             </div>
 

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../ContextProvider/AuthContextProvider";
 import Login from "../../../pages/LoginRegister/Login/Login";
 
@@ -7,6 +7,20 @@ const MyNavbar = () => {
   const { user } = useContext(AuthContext);
 
   const { handleManualLogout } = useContext(AuthContext);
+  const location = useLocation()
+  const fromPath = location.state?.from?.pathname || '/'
+
+  const navigate = useNavigate() 
+
+  const handleLogout = ()=>{
+    handleManualLogout()
+    .then(result=>{
+      navigate(fromPath)
+    })
+    .catch(err=>{
+
+    })
+  }
   return (
     <div className="">
       <div className="navbar bg-[#fffaf0] max-w-[1520px] mx-auto shadow-md">
@@ -123,11 +137,11 @@ const MyNavbar = () => {
                 tabIndex={0}
                 className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
               >
-                <li>
+                <Link to='/profile'><li>
                   <a className="justify-between">Profile</a>
-                </li>
+                </li></Link>
 
-                <li onClick={handleManualLogout}>
+                <li onClick={handleLogout}>
                   <a>Logout</a>
                 </li>
               </ul>

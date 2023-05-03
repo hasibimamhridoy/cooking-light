@@ -10,7 +10,7 @@ const chook = React.createRef();
 const Blog = () => {
   return (
     <div>
-      <div className="lg:px-20 px-3 my-10">
+      <div className="lg:px-20 px-3 py-10 bg-[#fffaf0]">
   
         <div ref={controlled} className="con-uncontroll">
           <h1 className="text-lg lg:text-3xl text-center font-bold my-10">

@@ -17,11 +17,11 @@ const MainLayouts = () => {
      }
   
     return (
-        <div className='max-w-[1520px] mx-auto'>
-            <div className="mynavbar ">
+        <div className=' '>
+            <div className="mynavbar mx-auto max-w-[1520px] ">
                 <MyNavbar></MyNavbar>
             </div>
-            <div className="outlet lg:h-fit">
+            <div className="outlet mx-auto max-w-[1520px] lg:h-fit">
                 <Outlet></Outlet>
             </div>
             <div className="footer w-full bg-neutral-900 flex justify-center">

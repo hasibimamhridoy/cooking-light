@@ -11,6 +11,7 @@ import PrivateRoutes from '../PrivateRoutes/PrivateRoutes';
 import About from '../../pages/About/About';
 import Recipe from '../../pages/Recipe/Recipe';
 import Tric from '../../pages/Tric/Tric';
+import Profile from '../../pages/Profile/Profile';
 
 const MainRoutes = createBrowserRouter([
     {
@@ -31,6 +32,10 @@ const MainRoutes = createBrowserRouter([
             {
                 path:'/about',
                 element:<About></About>
+            },
+            {
+                path:'/profile',
+                element:<PrivateRoutes><Profile></Profile></PrivateRoutes>
             },
             {
                 path:'/chef/:id',
