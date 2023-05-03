@@ -64,10 +64,10 @@ const Blog = () => {
               validation.
             </p>
           </div>
-          <Pdf targetRef={controlled} filename="Uncontrold-Conttrolled.pdf">
+          <Pdf targetRef={controlled}  filename="Uncontrold-Conttrolled.pdf">
             {({ toPdf }) => (
-              <div className="flex mt-5 custom-btn transition duration-700 hover:bg-green-400 cursor-pointer bg-yellow-400 px-5 py-2 rounded-sm w-fit gap-2 items-center">
-                <button className="" onClick={toPdf}>
+              <div onClick={toPdf} className="flex mt-5 custom-btn transition duration-700 hover:bg-green-400 cursor-pointer bg-yellow-400 px-5 py-2 rounded-sm w-fit gap-2 items-center">
+                <button className="" >
                   Download
                 </button>
                 <AiFillFilePdf />
@@ -133,8 +133,8 @@ const Blog = () => {
           </div>
           <Pdf targetRef={props} filename="PropsTypes.pdf">
             {({ toPdf }) => (
-              <div className="flex mt-5 custom-btn transition duration-700 hover:bg-green-400 cursor-pointer bg-yellow-400 px-5 py-2 rounded-sm w-fit gap-2 items-center">
-                <button className="" onClick={toPdf}>
+              <div onClick={toPdf} className="flex mt-5 custom-btn transition duration-700 hover:bg-green-400 cursor-pointer bg-yellow-400 px-5 py-2 rounded-sm w-fit gap-2 items-center">
+                <button className="">
                   Download
                 </button>
                 <AiFillFilePdf />
@@ -177,8 +177,8 @@ const Blog = () => {
 
           <Pdf targetRef={node} filename="Node-Express.pdf">
             {({ toPdf }) => (
-              <div className="flex mt-5 custom-btn transition duration-700 hover:bg-green-400 cursor-pointer bg-yellow-400 px-5 py-2 rounded-sm w-fit gap-2 items-center">
-                <button className="" onClick={toPdf}>
+              <div onClick={toPdf} className="flex mt-5 custom-btn transition duration-700 hover:bg-green-400 cursor-pointer bg-yellow-400 px-5 py-2 rounded-sm w-fit gap-2 items-center">
+                <button className="" >
                   Download
                 </button>
                 <AiFillFilePdf />
@@ -227,8 +227,8 @@ const Blog = () => {
           </div>
           <Pdf targetRef={chook} filename="Customhook.pdf">
             {({ toPdf }) => (
-              <div className="flex mt-5 custom-btn transition duration-700 hover:bg-green-400 cursor-pointer bg-yellow-400 px-5 py-2 rounded-sm w-fit gap-2 items-center">
-                <button className="" onClick={toPdf}>
+              <div onClick={toPdf} className="flex mt-5 custom-btn transition duration-700 hover:bg-green-400 cursor-pointer bg-yellow-400 px-5 py-2 rounded-sm w-fit gap-2 items-center">
+                <button className="" >
                   Download
                 </button>
                 <AiFillFilePdf />

@@ -18,6 +18,16 @@ const Login = () => {
     const pass = e.target.password.value;
     const email = e.target.email.value;
 
+    if (email.length < 1) {
+      return setError('You cannot submit empty email fields.')
+    }
+
+    else if (pass.length < 6) {
+
+      return setError('Password should be at least 6 characters')
+      
+    }
+
     handleManualLogin(email, pass)
       .then((result) => {
         console.log(result);
@@ -36,6 +46,9 @@ const Login = () => {
 
   if (error =='Firebase: Error (auth/wrong-password).') {
     setError('Your Password is wrong.Please provided correct password')
+  }
+  if (error =='Firebase: Error (auth/invalid-email).') {
+    setError('Email is wrong.Please Provided valid Email.')
   }
 
   const handleGoogle =()=>{
@@ -90,7 +103,7 @@ const Login = () => {
               id="email"
               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
               placeholder="name@company.com"
-              required
+              
             />
           </div>
           <div>
@@ -106,7 +119,7 @@ const Login = () => {
               id="password"
               placeholder="••••••••"
               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-              required
+              
             />
           </div>
           <div class="flex items-start">
