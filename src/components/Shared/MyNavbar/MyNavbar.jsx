@@ -7,20 +7,18 @@ const MyNavbar = () => {
   const { user } = useContext(AuthContext);
 
   const { handleManualLogout } = useContext(AuthContext);
-  const location = useLocation()
-  const fromPath = location.state?.from?.pathname || '/'
+  const location = useLocation();
+  const fromPath = location.state?.from?.pathname || "/";
 
-  const navigate = useNavigate() 
+  const navigate = useNavigate();
 
-  const handleLogout = ()=>{
+  const handleLogout = () => {
     handleManualLogout()
-    .then(result=>{
-      navigate(fromPath)
-    })
-    .catch(err=>{
-
-    })
-  }
+      .then((result) => {
+        navigate(fromPath);
+      })
+      .catch((err) => {});
+  };
   return (
     <div className="">
       <div className="navbar bg-[#fffaf0] max-w-[1520px] mx-auto shadow-md">
@@ -47,35 +45,35 @@ const MyNavbar = () => {
               className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
               <NavLink
-              to="/"
-              className={({ isActive, isPending }) =>
-                isPending ? "pending" : isActive ? "text-yellow-500" : ""
-              }
-            >
-              <li>
-                <a>Home</a>
-              </li>
-            </NavLink>
-            <NavLink
-              to="/blog"
-              className={({ isActive, isPending }) =>
-                isPending ? "pending" : isActive ? "text-yellow-500" : ""
-              }
-            >
-              <li>
-                <a>Blog</a>
-              </li>
-            </NavLink>
-            <NavLink
-              to="/about"
-              className={({ isActive, isPending }) =>
-                isPending ? "pending" : isActive ? "text-yellow-500" : ""
-              }
-            >
-              <li>
-                <a>About us</a>
-              </li>
-            </NavLink>
+                to="/"
+                className={({ isActive, isPending }) =>
+                  isPending ? "pending" : isActive ? "text-yellow-500" : ""
+                }
+              >
+                <li>
+                  <a>Home</a>
+                </li>
+              </NavLink>
+              <NavLink
+                to="/blog"
+                className={({ isActive, isPending }) =>
+                  isPending ? "pending" : isActive ? "text-yellow-500" : ""
+                }
+              >
+                <li>
+                  <a>Blog</a>
+                </li>
+              </NavLink>
+              <NavLink
+                to="/about"
+                className={({ isActive, isPending }) =>
+                  isPending ? "pending" : isActive ? "text-yellow-500" : ""
+                }
+              >
+                <li>
+                  <a>About us</a>
+                </li>
+              </NavLink>
             </ul>
           </div>
           <Link to="/">
@@ -86,7 +84,6 @@ const MyNavbar = () => {
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
-            
             <NavLink
               to="/"
               className={({ isActive, isPending }) =>
@@ -117,15 +114,14 @@ const MyNavbar = () => {
                 <a>About us</a>
               </li>
             </NavLink>
-  
-           
           </ul>
         </div>
         <div className="navbar-end">
           {user ? (
             <div className="dropdown dropdown-end">
+              <div className="tooltip tooltip-left" data-tip={user.displayName}>
               <label
-                title={user.displayName}
+                
                 tabIndex={0}
                 className="btn btn-ghost btn-circle avatar"
               >
@@ -133,13 +129,16 @@ const MyNavbar = () => {
                   <img src={user.photoURL} />
                 </div>
               </label>
+              </div>
               <ul
                 tabIndex={0}
                 className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
               >
-                <Link to='/profile'><li>
-                  <a className="justify-between">Profile</a>
-                </li></Link>
+                <Link to="/profile">
+                  <li>
+                    <a className="justify-between">Profile</a>
+                  </li>
+                </Link>
 
                 <li onClick={handleLogout}>
                   <a>Logout</a>

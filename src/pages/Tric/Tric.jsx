@@ -10,22 +10,22 @@ const Tric = () => {
 
     const {title,chef_picture,chef_name,shortBio,details} = tric
    
-  const [disabledRecipes, setDisabledRecipes] = useState(false);
+    const [disabledRecipes, setDisabledRecipes] = useState(false);
 
-  const handleToast = () => {
-    toast.success("Successfully Added!", {
-      position: "top-right",
-      autoClose: 1000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-
-    setDisabledRecipes(true);
-  };
+    const handleToast = () => {
+      toast.success("Successfully Added!", {
+        position: "top-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+  
+      setDisabledRecipes(true);
+    };
 
 
 
@@ -67,10 +67,7 @@ const Tric = () => {
             <div className="addtofavorite flex  justify-end py-5">
               <button
                 onClick={handleToast}
-                className={`custom-btn ${
-                  disabledRecipes &&
-                  "cursor-not-allowed bg-gray-400 hover:bg-gray-400"
-                }  hover:bg-green-400 bg-yellow-400 px-5 py-2 rounded-sm`}
+                className={`custom-btn ${disabledRecipes && 'cursor-not-allowed bg-gray-500 hover:bg-gray-500'} hover:bg-green-400 bg-yellow-400 px-5 py-2 rounded-sm`}
                 disabled={disabledRecipes}
               >
                 Add to favorite
