@@ -7,12 +7,38 @@ const controlled = React.createRef();
 const props = React.createRef();
 const node = React.createRef();
 const chook = React.createRef();
+const allPage = React.createRef();
 const Blog = () => {
+
+  const options = {
+    orientation: 'portrait',
+    unit: 'in',
+    format: [15,50],
+   
+};
+  const cOption = {
+    orientation: 'portrait',
+    unit: 'in',
+    format: [15,15],
+   
+};
+ 
   return (
     <div>
-      <div className="lg:px-20 px-3 py-10 bg-[#fffaf0]">
+     <Pdf targetRef={allPage} options={options} filename="PropsTypes.pdf">
+            {({ toPdf }) => (
+              <div onClick={toPdf} className="flex m-5 mt-5 custom-btn transition duration-700 hover:bg-green-400 cursor-pointer bg-yellow-400 px-5 py-2 rounded-sm w-fit gap-2 items-center">
+                <button className="">
+                  Print Full Pages
+                </button>
+                <AiFillFilePdf />
+              </div>
+            )}
+          </Pdf>
+
+      <div ref={allPage} className="lg:px-20 h-fit w-fit px-3 py-10 bg-[#fffaf0]">
   
-        <div ref={controlled} className="con-uncontroll">
+        <div ref={controlled} className="con-uncontroll p-5">
           <h1 className="text-lg lg:text-3xl text-center font-bold my-10">
             Tell us the differences between uncontrolled and controlled
             components.
@@ -64,7 +90,7 @@ const Blog = () => {
               validation.
             </p>
           </div>
-          <Pdf targetRef={controlled}  filename="Uncontrold-Conttrolled.pdf">
+          <Pdf targetRef={controlled} options={cOption}  filename="Uncontrold-Conttrolled.pdf">
             {({ toPdf }) => (
               <div onClick={toPdf} className="flex mt-5 custom-btn transition duration-700 hover:bg-green-400 cursor-pointer bg-yellow-400 px-5 py-2 rounded-sm w-fit gap-2 items-center">
                 <button className="" >
@@ -75,7 +101,7 @@ const Blog = () => {
             )}
           </Pdf>
         </div>
-        <div ref={props} className="propstypes">
+        <div ref={props} className="propstypes p-5">
           <h1 className="text-lg lg:text-3xl text-center font-bold my-10">
             How to validate React props using PropTypes ?
           </h1>
@@ -131,9 +157,9 @@ const Blog = () => {
               other is same thing.
             </p>
           </div>
-          <Pdf targetRef={props} filename="PropsTypes.pdf">
+          <Pdf targetRef={props} options={cOption} filename="PropsTypes.pdf">
             {({ toPdf }) => (
-              <div onClick={toPdf} className="flex mt-5 custom-btn transition duration-700 hover:bg-green-400 cursor-pointer bg-yellow-400 px-5 py-2 rounded-sm w-fit gap-2 items-center">
+              <div onClick={toPdf} className="flex mt-5  custom-btn transition duration-700 hover:bg-green-400 cursor-pointer bg-yellow-400 px-5 py-2 rounded-sm w-fit gap-2 items-center">
                 <button className="">
                   Download
                 </button>
@@ -143,7 +169,7 @@ const Blog = () => {
           </Pdf>
         </div>
 
-        <div ref={node} className="node-express">
+        <div ref={node} className="node-express p-5">
           <h1 className="text-lg lg:text-3xl text-center font-bold my-10">
             Tell us the difference between nodejs and express js.
           </h1>
@@ -175,7 +201,7 @@ const Blog = () => {
             </p>
           </div>
 
-          <Pdf targetRef={node} filename="Node-Express.pdf">
+          <Pdf targetRef={node} options={cOption} filename="Node-Express.pdf">
             {({ toPdf }) => (
               <div onClick={toPdf} className="flex mt-5 custom-btn transition duration-700 hover:bg-green-400 cursor-pointer bg-yellow-400 px-5 py-2 rounded-sm w-fit gap-2 items-center">
                 <button className="" >
@@ -187,7 +213,7 @@ const Blog = () => {
           </Pdf>
         </div>
 
-        <div ref={chook} className="custom-hook">
+        <div ref={chook} className="custom-hook p-5">
           <h1 className="text-lg lg:text-3xl text-center font-bold my-10">
             What is a custom hook, and why will you create a custom hook?
           </h1>
@@ -225,7 +251,7 @@ const Blog = () => {
               as well as more advantage.
             </p>
           </div>
-          <Pdf targetRef={chook} filename="Customhook.pdf">
+          <Pdf targetRef={chook} options={cOption} filename="Customhook.pdf">
             {({ toPdf }) => (
               <div onClick={toPdf} className="flex mt-5 custom-btn transition duration-700 hover:bg-green-400 cursor-pointer bg-yellow-400 px-5 py-2 rounded-sm w-fit gap-2 items-center">
                 <button className="" >

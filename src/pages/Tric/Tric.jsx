@@ -67,7 +67,7 @@ const Tric = () => {
             <div className="addtofavorite flex  justify-end py-5">
               <button
                 onClick={handleToast}
-                className={`custom-btn ${disabledRecipes && 'cursor-not-allowed bg-gray-500 hover:bg-gray-500'} hover:bg-green-400 bg-yellow-400 px-5 py-2 rounded-sm`}
+                className={`custom-btn  px-5 py-2 rounded-sm ${disabledRecipes ? "cursor-not-allowed bg-gray-400 hover:bg-gray-400" : 'hover:bg-green-400 bg-yellow-400'}`}
                 disabled={disabledRecipes}
               >
                 Add to favorite

@@ -27,7 +27,7 @@ const ChefCard = ({ chefs }) => {
             className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
           >
             <a href="#">
-              <LazyLoad height={350} threshold={0.95}>
+              <LazyLoad height={325} threshold={0.95}>
                 <img
                   className=" h-60 w-full object-fill rounded-t-lg"
                   src={chef_picture}
@@ -35,21 +35,21 @@ const ChefCard = ({ chefs }) => {
                 />
               </LazyLoad>
             </a>
-            <div className="px-5 pb-5 space-y-3">
+            <div className="px-5 pb-5 lg:space-y-6 space-y-3">
               <a>
                 <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
                   {chef_name}
                 </h5>
               </a>
 
-              <ul className="flex gap-5">
+              <ul className="flex gap-5 text-sm">
                 <li className="items-center flex gap-1 ">
                 <MdWork/>
-                  <span className="font-extralight">Exprience:</span>{" "}
+                  <span className="font-extralight text-sm">Exprience:</span>{" "}
                   ({years_of_experience})
                 </li>
                 <li className="flex items-center justify-center gap-2"><SiFoodpanda />
-                  <span className="font-extralight r">Recipes :</span>
+                  <span className="font-extralight text-sm">Recipes :</span>
                   ({number_of_recipes})
                 </li>
               </ul>
