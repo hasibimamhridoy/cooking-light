@@ -36,6 +36,7 @@ const MainRoutes = createBrowserRouter([
             {
                 path:'/profile',
                 element:<PrivateRoutes><Profile></Profile></PrivateRoutes>
+                
             },
             {
                 path:'/chef/:id',
@@ -46,7 +47,7 @@ const MainRoutes = createBrowserRouter([
             {
                 path:'/recipe/:id',
                 element:<PrivateRoutes><Recipe></Recipe></PrivateRoutes>,
-                loader:({params})=>fetch(`https://cooking-light-server-hasibimamhridoy.vercel.app/recipe/${params.id}`)
+                loader:({params})=>fetch(`http://localhost:6005/recipe/${params.id}`)
                 
             },
             {

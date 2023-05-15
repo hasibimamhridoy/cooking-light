@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const RecipeCard = ({ allRecipes }) => {
+
+  console.log(allRecipes);
     const [showAll,setShowAll] = useState(false)
   return (
     <div>
         <div className="lg:px-24 px-3 grid grid-cols-1 lg:grid-cols-2 gap-3 ">
       {showAll ? allRecipes.map((recipe) => {
         return (
-          <div class="mx-auto">
+          <div key={recipe._id} class="mx-auto">
             <div class="inline-grid max-w-xs sm:max-w-xs lg:max-w-lg lg:flex bg-white rounded-lg border shadow-lg pb-6 lg:pb-0">
               <div class="w-full h-52 lg:w-1/3 lg:p-4">
                 <img
@@ -30,7 +32,7 @@ const RecipeCard = ({ allRecipes }) => {
               </div>
             </div>
             <div class="flex justify-center -mt-8 rounded-b-lg max-w-xs lg:max-w-lg lg:-mt-8 lg:justify-end lg:pr-8 py-1">
-              <Link to={`/recipe/${recipe.recipe_name}`}><button
+              <Link to={`/recipe/${recipe._id}`}><button
                 type="button"
                 class="text-white py-3 hover:bg-yellow-400 transition duration-700 px-4 bg-green-400 rounded-md"
               >
@@ -69,7 +71,7 @@ const RecipeCard = ({ allRecipes }) => {
               </div>
             </div>
             <div class="flex justify-center -mt-8 rounded-b-lg max-w-xs lg:max-w-lg lg:-mt-8 lg:justify-end lg:pr-8 py-1">
-              <Link to={`/recipe/${recipe.recipe_name}`}><button
+              <Link to={`/recipe/${recipe._id}`}><button
                 type="button"
                 class="text-white py-3 px-4 hover:bg-yellow-400 transition duration-700  bg-green-400  rounded-md"
               >

@@ -1,13 +1,24 @@
 import React, { useState } from "react";
+import { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import { AuthContext } from "../../ContextProvider/AuthContextProvider";
 const Recipe = () => {
+
+  const {user} = useContext(AuthContext)
+  console.log(user);
+
+  const userEmail = user.email
+  console.log(userEmail);
+
   const recipe = useLoaderData();
 
   const { recipe_img, recipe_name, ingredients, cooking_method, rating } =
     recipe;
 
   const [disabledRecipes, setDisabledRecipes] = useState(false);
+
+  const favoriteData = {userEmail,recipe_img, recipe_name, ingredients, cooking_method, rating}
 
   const handleToast = () => {
     toast.success("Successfully Added!", {
@@ -21,7 +32,13 @@ const Recipe = () => {
       theme: "light",
     });
 
-    fetch('')
+    fetch('http://localhost:6005/favorites',{
+      method:'POST',
+      headers:{
+        'Content-Type' : 'application/json'
+      },
+      body: JSON.stringify(favoriteData)
+    })
     .then(res => res.json())
     .then(data =>{
       console.log(data);
@@ -66,7 +83,7 @@ const Recipe = () => {
 
             <div className="addtofavorite flex  justify-end py-5">
               <button
-                onClick={handleToast}
+                onClick={()=>handleToast()}
                 className={`custom-btn  px-5 py-2 rounded-sm ${
                   disabledRecipes
                     ? "cursor-not-allowed bg-gray-400 hover:bg-gray-400"
